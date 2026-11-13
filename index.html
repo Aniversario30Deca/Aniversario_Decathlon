@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>30 Aniversario Decathlon · Programa de actividades</title>
+<meta name="description" content="Celebra con nosotros 30 años de deporte para todos. Consulta todas las actividades y su cuenta regresiva.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="logo" href="#top" aria-label="Decathlon 30 años"><span class="logo__mark">D</span><span class="logo__txt">DECATHLON</span></a>
+    <nav class="nav__links">
+      <a href="#programa">Programa</a>
+      <a href="#final">Gran final</a>
+      <a href="#info">Info</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+    </div>
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <p class="eyebrow">Del 16 al 28 de noviembre</p>
+        <h1>
+          <span class="big30">30</span>
+          <span class="h1__txt">años<br>moviéndonos<br><em>contigo</em></span>
+        </h1>
+        <p class="lead">Dos semanas de deporte, premios y sorpresas para celebrar el 30 aniversario de Decathlon. Entrada libre. Ven con tu mejor energía.</p>
+        <a class="btn" href="#programa">Ver actividades ↓</a>
+      </div>
+
+      <aside class="next" aria-live="polite">
+        <p class="next__label"><span class="dot"></span><span id="nextLabel">Próxima actividad</span></p>
+        <h2 id="nextTitle">—</h2>
+        <p class="next__when" id="nextWhen"></p>
+        <div class="cd cd--lg" id="nextCd">
+          <div><b data-u="d">00</b><small>días</small></div>
+          <div><b data-u="h">00</b><small>horas</small></div>
+          <div><b data-u="m">00</b><small>min</small></div>
+          <div><b data-u="s">00</b><small>seg</small></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>DEPORTE PARA TODOS</span><span>★</span><span>30 AÑOS</span><span>★</span><span>GRACIAS POR MOVERTE</span><span>★</span>
+        <span>DEPORTE PARA TODOS</span><span>★</span><span>30 AÑOS</span><span>★</span><span>GRACIAS POR MOVERTE</span><span>★</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="programa">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow eyebrow--blue">Programa</p>
+        <h2 class="title">Todas las actividades</h2>
+        <p class="sub">Cada actividad tiene su propia cuenta regresiva. Descansamos los domingos.</p>
+      </div>
+
+      <div class="filters" id="filters" role="tablist" aria-label="Filtrar por categoría"></div>
+
+      <div class="days" id="days"></div>
+    </div>
+  </section>
+
+  <section class="section final" id="final">
+    <div class="wrap final__in">
+      <div>
+        <p class="eyebrow">Sábado 28 de noviembre</p>
+        <h2 class="title title--light">Gran fiesta de los 30</h2>
+        <p class="sub sub--light">Música en vivo, pastel gigante, sorteo de premios y reconocimiento a nuestra comunidad deportiva.</p>
+      </div>
+      <div class="cd cd--xl" id="finalCd">
+        <div><b data-u="d">00</b><small>días</small></div>
+        <div><b data-u="h">00</b><small>horas</small></div>
+        <div><b data-u="m">00</b><small>min</small></div>
+        <div><b data-u="s">00</b><small>seg</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="info">
+    <div class="wrap info">
+      <div class="info__card">
+        <h3>📍 Dónde</h3>
+        <p>Tienda Decathlon · [dirección de tu sucursal]</p>
+      </div>
+      <div class="info__card">
+        <h3>🕘 Horario</h3>
+        <p>Lunes a sábado, 9:00 – 21:00. Domingos sin actividades.</p>
+      </div>
+      <div class="info__card">
+        <h3>🎟️ Registro</h3>
+        <p>Entrada libre. Algunas actividades tienen cupo limitado, llega con tiempo.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span class="logo"><span class="logo__mark">D</span><span class="logo__txt">DECATHLON</span></span>
+    <p>30 aniversario · Deporte para todos</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
