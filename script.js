@@ -1,60 +1,96 @@
 /* ============================================================
-   ACTIVIDADES (inventadas por ahora) — edita este arreglo
-   date: AAAA-MM-DD · time: HH:MM (24h) · duration: minutos
-   cat: una de las claves de CATS
+   ACTIVIDADES REALES (fuente: references/resumen.txt)
+   sessions: [['HH:MM', minutos], ...]  → cada una con su cuenta atrás
+   when:     texto que se muestra en la tarjeta
    ============================================================ */
 const CATS = {
-  running:   { name: 'Running',    color: '#3653BA' },
-  fitness:   { name: 'Fitness',    color: '#e4572e' },
-  ninos:     { name: 'Niños',      color: '#f2a900' },
-  outdoor:   { name: 'Outdoor',    color: '#2e9e5b' },
-  taller:    { name: 'Talleres',   color: '#7b4bd6' },
-  fiesta:    { name: 'Fiesta',     color: '#d6336c' }
+  patinaje:    { name: 'Patinaje',    color: '#3653BA' },
+  running:     { name: 'Running',     color: '#e4572e' },
+  taller:      { name: 'Taller',      color: '#7b4bd6' },
+  raqueta:     { name: 'Raqueta',     color: '#2e9e5b' },
+  celebracion: { name: 'Celebración', color: '#d6336c' },
+  juegos:      { name: 'Juegos',      color: '#f2a900' },
+  servicios:   { name: 'Servicios',   color: '#0e8fa8' },
+  animacion:   { name: 'Animación',   color: '#ff7a2f' }
 };
 
+const PEAKS = [['12:30', 120], ['17:30', 180]];
+const PEAKS_TXT = '12:30 – 14:30 h y 17:30 – 20:30 h';
+
 const ACTIVITIES = [
-  { date:'2026-11-16', time:'08:00', duration:60,  cat:'running', icon:'🏃', title:'Carrera 3K "30 años"', desc:'Carrera recreativa de 3 km para todas las edades. Playera conmemorativa para los primeros 100.', place:'Explanada principal' },
-  { date:'2026-11-16', time:'18:00', duration:45,  cat:'fitness', icon:'🧘', title:'Yoga al atardecer', desc:'Clase abierta guiada por instructores certificados. Lleva tu tapete.', place:'Estacionamiento techado' },
+  /* ---------- Miércoles 18 ---------- */
+  { date:'2026-11-18', cat:'patinaje', icon:'🛼', title:'Roll In · Escuela de patinaje',
+    desc:'Escuela de patinaje en el parking de afuera. Formación y deportes sobre ruedas.',
+    place:'Parking exterior', when:'17:00 – 19:00 h', sessions:[['17:00',120]] },
+  { date:'2026-11-18', cat:'running', icon:'⛰️', title:'Reto en cinta con inclinación',
+    desc:'Pon a prueba tu resistencia y supérate en la cinta de correr con inclinación.',
+    place:'En tienda', when:'18:00 – 19:00 h', sessions:[['18:00',60]] },
+  { date:'2026-11-18', cat:'running', icon:'🏃‍♀️', title:'Tarde Social Runners 10K',
+    desc:'Running en comunidad con degustación de geles, barritas e isotónicos.',
+    place:'En tienda', when:'19:00 – 20:00 h', sessions:[['19:00',60]] },
 
-  { date:'2026-11-17', time:'17:00', duration:90,  cat:'ninos',   icon:'⚽', title:'Mini Olimpiadas', desc:'Circuito de juegos deportivos para niños de 5 a 12 años con medallas para todos.', place:'Zona infantil' },
+  /* ---------- Viernes 20 ---------- */
+  { date:'2026-11-20', cat:'taller', icon:'🚲', title:'Taller de mecánica rápida',
+    desc:'En 15 minutos aprende a cambiar una cámara y a ajustar los frenos de tu bici.',
+    place:'En tienda', when:'18:00 h · 15 min', sessions:[['18:00',15]] },
+  { date:'2026-11-20', cat:'raqueta', icon:'🏓', title:'Ping pong y bádminton',
+    desc:'Juega ping pong y bádminton en la planta de arriba.',
+    place:'Planta de arriba', when:'18:00 h', sessions:[['18:00',60]] },
 
-  { date:'2026-11-18', time:'11:00', duration:60,  cat:'taller',  icon:'🔧', title:'Taller de bici', desc:'Aprende mantenimiento básico: frenos, cadena y ajuste de llantas.', place:'Taller de bicicletas' },
-  { date:'2026-11-18', time:'19:00', duration:60,  cat:'fitness', icon:'💃', title:'Zumba masiva', desc:'Una hora de baile y cardio con música para toda la familia.', place:'Explanada principal' },
+  /* ---------- Sábado 21 ---------- */
+  { date:'2026-11-21', cat:'celebracion', icon:'🎂', title:'Tarta de aniversario',
+    desc:'Celebramos con una tarta de aniversario en la apertura de la tienda.',
+    place:'Apertura de la tienda', when:'09:30 h', sessions:[['09:30',30]] },
+  { date:'2026-11-21', cat:'celebracion', icon:'🏅', title:'Pasillo de honor a los clientes',
+    desc:'Recibimos a los clientes con un pasillo de honor y compartimos 15 minutos con ellos.',
+    place:'Apertura de la tienda', when:'09:30 h · 15 min', sessions:[['09:30',15]] },
+  { date:'2026-11-21', cat:'juegos', icon:'🗺️', title:'Mapa del tesoro',
+    desc:'Sigue el mapa y encuentra 4 tarjetas regalo: 2 por la mañana y 2 por la tarde.',
+    place:'En tienda', when:'11:30 h (mañana) y 18:00 h (tarde)', sessions:[['11:30',60],['18:00',60]] },
+  { date:'2026-11-21', cat:'raqueta', icon:'🏓', title:'Ping pong y bádminton',
+    desc:'Juego libre de ping pong y bádminton en la planta de arriba.',
+    place:'Planta de arriba', when:'12:00 h y 18:00 h', sessions:[['12:00',60],['18:00',60]] },
 
-  { date:'2026-11-19', time:'18:30', duration:75,  cat:'outdoor', icon:'🧗', title:'Muro de escalada libre', desc:'Prueba nuestro muro portátil con instructores y equipo incluido.', place:'Patio exterior' },
+  /* ---------- Miércoles 25 ---------- */
+  { date:'2026-11-25', cat:'patinaje', icon:'🛼', title:'Roll In · Escuela de patinaje',
+    desc:'Escuela de patinaje en el parking de afuera. Formación y deportes sobre ruedas.',
+    place:'Parking exterior', when:'17:00 – 19:00 h', sessions:[['17:00',120]] },
+  { date:'2026-11-25', cat:'running', icon:'🏃‍♀️', title:'Tarde Social Runners 10K',
+    desc:'Running en comunidad con degustación de geles, barritas e isotónicos.',
+    place:'En tienda', when:'19:00 – 20:00 h', sessions:[['19:00',60]] },
 
-  { date:'2026-11-20', time:'10:00', duration:120, cat:'taller',  icon:'🎒', title:'Cómo armar tu mochila de trekking', desc:'Consejos prácticos de peso, capas y equipo esencial para tu primera ruta.', place:'Sala de talleres' },
-  { date:'2026-11-20', time:'19:30', duration:60,  cat:'fitness', icon:'🥊', title:'Box funcional', desc:'Clase intensa de box sin contacto, apta para principiantes.', place:'Explanada principal' },
+  /* ---------- Viernes 27 ---------- */
+  { date:'2026-11-27', cat:'servicios', icon:'🛠️', title:'Jornada de Servicios',
+    desc:'Un día enfocado en nuestros servicios: taller y postventa para todos los deportes.',
+    place:'En tienda', when:PEAKS_TXT, sessions:PEAKS },
 
-  { date:'2026-11-21', time:'09:00', duration:90,  cat:'running', icon:'🚴', title:'Rodada familiar 10K', desc:'Paseo en bici por ruta segura y señalizada. Casco obligatorio.', place:'Salida desde tienda' },
-  { date:'2026-11-21', time:'17:00', duration:60,  cat:'ninos',   icon:'🎨', title:'Pinta tu deporte', desc:'Los peques pintan su mural deportivo que quedará en tienda.', place:'Zona infantil' },
-
-  { date:'2026-11-23', time:'18:00', duration:60,  cat:'fitness', icon:'🏋️', title:'Reto Crossfit 30 min', desc:'Entrena 30 minutos y compite por premios contra otros miembros.', place:'Explanada principal' },
-
-  { date:'2026-11-24', time:'12:00', duration:60,  cat:'taller',  icon:'🥗', title:'Nutrición para deportistas', desc:'Charla con nutriólogo: qué comer antes, durante y después de entrenar.', place:'Sala de talleres' },
-  { date:'2026-11-24', time:'18:30', duration:60,  cat:'outdoor', icon:'⛺', title:'Armado de casa de campaña', desc:'Competencia relámpago: ¿quién arma su tienda más rápido?', place:'Patio exterior' },
-
-  { date:'2026-11-25', time:'17:30', duration:60,  cat:'ninos',   icon:'🏓', title:'Torneo de ping pong', desc:'Torneo abierto por categorías: infantil, juvenil y adultos.', place:'Zona de juegos' },
-
-  { date:'2026-11-26', time:'18:00', duration:90,  cat:'running', icon:'🌙', title:'Carrera nocturna 5K', desc:'Corre de noche con luces led y música en el recorrido.', place:'Explanada principal' },
-
-  { date:'2026-11-27', time:'11:00', duration:45,  cat:'taller',  icon:'👟', title:'Elige tus tenis ideales', desc:'Análisis de pisada gratuito y asesoría personalizada de calzado.', place:'Área de running' },
-  { date:'2026-11-27', time:'19:00', duration:60,  cat:'fitness', icon:'🤸', title:'Stretching & recovery', desc:'Sesión de estiramiento y recuperación para cerrar la semana.', place:'Explanada principal' },
-
-  { date:'2026-11-28', time:'12:00', duration:60,  cat:'ninos',   icon:'🎂', title:'Pastel gigante de 30 años', desc:'Cortamos el pastel de aniversario y lo compartimos con todos.', place:'Explanada principal' },
-  { date:'2026-11-28', time:'17:00', duration:180, cat:'fiesta',  icon:'🎉', title:'Gran fiesta + sorteo de premios', desc:'Música en vivo, DJ, reconocimientos y sorteo de equipo deportivo.', place:'Explanada principal' }
+  /* ---------- Sábado 28 ---------- */
+  { date:'2026-11-28', cat:'animacion', icon:'🎈', title:'OUTSIDE · Arco inflable y globos',
+    desc:'Arco inflable afuera y torre de globos para regalar durante la jornada.',
+    place:'Exterior de la tienda', when:PEAKS_TXT, sessions:PEAKS },
+  { date:'2026-11-28', cat:'juegos', icon:'🎁', title:'10 tarjetas regalo escondidas',
+    desc:'Encuentra las 10 tarjetas regalo escondidas en distintos puntos de la tienda.',
+    place:'En tienda', when:'Turno mañana y tarde · ' + PEAKS_TXT, sessions:PEAKS },
+  { date:'2026-11-28', cat:'celebracion', icon:'🎂', title:'Tarta de aniversario',
+    desc:'Clausura del evento con tarta de aniversario en ambos picos de la tienda.',
+    place:'En tienda', when:PEAKS_TXT, sessions:PEAKS }
 ];
 
-const FINAL_DATE = new Date('2026-11-28T17:00:00');
+const FINAL_DATE = new Date('2026-11-28T12:30:00');
 const DAYS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 const MONTHS = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 
 const pad = n => String(n).padStart(2, '0');
-const start = a => new Date(`${a.date}T${a.time}:00`);
-const end = a => new Date(start(a).getTime() + a.duration * 60000);
 const fmtTime = d => `${pad(d.getHours())}:${pad(d.getMinutes())}`;
 
-ACTIVITIES.sort((a, b) => start(a) - start(b));
+// Convierte las sesiones en fechas reales
+ACTIVITIES.forEach(a => {
+  a.slots = a.sessions.map(([t, min]) => {
+    const s = new Date(`${a.date}T${t}:00`);
+    return { s, e: new Date(s.getTime() + min * 60000) };
+  });
+});
+ACTIVITIES.sort((a, b) => a.slots[0].s - b.slots[0].s);
 
 /* ---------- RENDER ---------- */
 const daysEl = document.getElementById('days');
@@ -73,7 +109,7 @@ function render() {
         <div class="card__top"><span class="tag">${c.name}</span><span class="ico">${a.icon}</span></div>
         <h3>${a.title}</h3>
         <p>${a.desc}</p>
-        <div class="meta"><span>🕘 ${fmtTime(start(a))} – ${fmtTime(end(a))}</span><span>📍 ${a.place}</span></div>
+        <div class="meta"><span>🕘 ${a.when}</span><span>📍 ${a.place}</span></div>
         <div class="cd">
           <div><b data-u="d">00</b><small>días</small></div>
           <div><b data-u="h">00</b><small>horas</small></div>
@@ -100,6 +136,7 @@ filtersEl.addEventListener('click', e => {
   const btn = e.target.closest('.chip'); if (!btn) return;
   filtersEl.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === btn));
   const f = btn.dataset.f;
+  daysEl.classList.toggle('filtered', f !== 'all');
   document.querySelectorAll('.card').forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
   document.querySelectorAll('.day').forEach(d => d.classList.toggle('hide', !d.querySelector('.card:not(.hide)')));
 });
@@ -117,49 +154,125 @@ function tick() {
 
   document.querySelectorAll('.card').forEach(card => {
     const a = ACTIVITIES[card.dataset.id];
-    const s = start(a), e = end(a);
     const st = card.querySelector('.state');
-    card.classList.toggle('live', now >= s && now < e);
-    card.classList.toggle('done', now >= e);
-    if (now >= e) st.textContent = 'Actividad finalizada';
-    else if (now >= s) st.textContent = '¡En curso ahora!';
-    else setCd(card, s - now);
+    const live = a.slots.find(x => now >= x.s && now < x.e);
+    const next = a.slots.find(x => x.s > now);
+    card.classList.toggle('live', !!live);
+    card.classList.toggle('done', !live && !next);
+    if (live) st.textContent = '¡En curso ahora!';
+    else if (!next) { st.textContent = 'Actividad finalizada'; setCd(card, 0); }
+    else setCd(card, next.s - now);
   });
-  document.querySelectorAll('.day').forEach(d => d.classList.toggle('today', d.dataset.date === todayKey));
+  document.querySelectorAll('.day').forEach(d => {
+    d.classList.toggle('today', d.dataset.date === todayKey);
+    d.classList.toggle('past', !d.querySelector('.card:not(.done)'));
+  });
 
-  // Próxima actividad (o en curso)
-  const live = ACTIVITIES.find(a => now >= start(a) && now < end(a));
-  const next = ACTIVITIES.find(a => start(a) > now);
+  // Próxima actividad (o en curso) en el hero
+  const events = ACTIVITIES.flatMap(a => a.slots.map(x => ({ a, ...x })));
+  const live = events.filter(x => now >= x.s && now < x.e).sort((p, q) => p.e - q.e)[0];
+  const next = events.filter(x => x.s > now).sort((p, q) => p.s - q.s)[0];
   const hero = document.getElementById('nextCd');
   const label = document.getElementById('nextLabel');
   const title = document.getElementById('nextTitle');
   const when = document.getElementById('nextWhen');
-  const target = live || next;
 
-  if (!target) {
+  if (live) {
+    label.textContent = 'En curso ahora';
+    title.textContent = live.a.title;
+    when.textContent = `Termina a las ${fmtTime(live.e)} h · ${live.a.place}`;
+    setCd(hero, live.e - now);
+  } else if (next) {
+    label.textContent = 'Próxima actividad';
+    title.textContent = next.a.title;
+    when.textContent = `${DAYS[next.s.getDay()]} ${next.s.getDate()} de ${MONTHS[next.s.getMonth()]} · ${fmtTime(next.s)} h · ${next.a.place}`;
+    setCd(hero, next.s - now);
+  } else {
     label.textContent = 'Gracias por celebrar';
     title.textContent = '¡Fueron 30 años increíbles!';
     when.textContent = 'El programa ha terminado.';
     setCd(hero, 0);
-  } else if (live) {
-    label.textContent = 'En curso ahora';
-    title.textContent = live.title;
-    when.textContent = `Termina a las ${fmtTime(end(live))} · ${live.place}`;
-    setCd(hero, end(live) - now);
-  } else {
-    const d = start(next);
-    label.textContent = 'Próxima actividad';
-    title.textContent = next.title;
-    when.textContent = `${DAYS[d.getDay()]} ${d.getDate()} de ${MONTHS[d.getMonth()]} · ${fmtTime(d)} · ${next.place}`;
-    setCd(hero, d - now);
   }
 
   setCd(document.getElementById('finalCd'), FINAL_DATE - now);
 }
 
-render();
-tick();
-setInterval(tick, 1000);
+/* ---------- FOTOS (3 a 23): LATERALES EN ESCRITORIO / CARRUSELES ENTRE DÍAS EN MÓVIL ---------- */
+function buildPhotos() {
+  const nums = Array.from({ length: 21 }, (_, i) => i + 3);
+  const tilt = [-6, 4, -3, 7, -5, 3, -7, 5, -2, 6, -4];
+  const mk = (n, i, lazy = false) => {
+    const f = document.createElement('figure');
+    f.className = 'ph';
+    f.style.setProperty('--r', `${tilt[i % tilt.length]}deg`);
+    f.style.setProperty('--x', `${((i * 37) % 12) - 6}px`);
+    const img = new Image();
+    img.src = `images/thumbs/${n}.jpg`; img.dataset.full = `images/${n}.jpeg`;
+    img.alt = ''; if (lazy) img.loading = 'lazy';
+    f.appendChild(img);
+    return f;
+  };
+  // Escritorio: columnas a los lados
+  const L = document.querySelector('.side--l'), R = document.querySelector('.side--r');
+  nums.forEach((n, i) => (i % 2 === 0 ? L : R).appendChild(mk(n, i)));
+
+  // Móvil: una galería en cada espacio entre días (cambia sola + puntos para cambiar a mano)
+  const days = [...document.querySelectorAll('.day')];
+  const gaps = days.length - 1;
+  if (gaps < 1) return;
+  const per = Math.ceil(nums.length / gaps);
+  days.slice(0, gaps).forEach((day, g) => {
+    const group = nums.slice(g * per, (g + 1) * per);
+    if (!group.length) return;
+    const gal = document.createElement('div');
+    gal.className = 'gal';
+    const stage = document.createElement('div');
+    stage.className = 'gal__stage';
+    const dots = document.createElement('div');
+    dots.className = 'gal__dots';
+    group.forEach((n, k) => {
+      const f = mk(n, g * per + k, true);
+      f.classList.add('gal__slide');
+      stage.appendChild(f);
+      const d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', `Foto ${k + 1} de ${group.length}`);
+      dots.appendChild(d);
+    });
+    gal.append(stage, dots);
+    day.after(gal);
+
+    const slides = [...stage.children], btns = [...dots.children];
+    let cur = 0, timer;
+    const show = i => {
+      cur = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('on', k === cur));
+      btns.forEach((b, k) => b.classList.toggle('on', k === cur));
+    };
+    const auto = () => { clearInterval(timer); timer = setInterval(() => show(cur + 1), 4000 + g * 400); };
+    btns.forEach((b, k) => b.addEventListener('click', () => { show(k); auto(); }));
+    // deslizar con el dedo
+    let x0 = null;
+    stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) { show(cur + (dx < 0 ? 1 : -1)); auto(); }
+    });
+    show(0); auto();
+  });
+}
+
+/* ---------- FONDO DEL HERO: CAMBIA CADA POCOS SEGUNDOS ---------- */
+(() => {
+  const slides = document.querySelectorAll('.slide');
+  if (slides.length < 2) return;
+  let i = 0;
+  setInterval(() => {
+    slides[i].classList.remove('on');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('on');
+  }, 5000);
+})();
 
 /* ---------- CONFETI DEL HERO ---------- */
 (() => {
@@ -173,4 +286,27 @@ setInterval(tick, 1000);
       `opacity:${0.55 + Math.random() * 0.4};animation-delay:${(-Math.random() * 7).toFixed(1)}s;width:${8 + Math.random() * 8}px;height:${18 + Math.random() * 14}px`;
     box.appendChild(el);
   }
+})();
+
+render();
+buildPhotos();
+tick();
+setInterval(tick, 1000);
+
+/* ---------- VISOR AMPLIADO DE FOTOS ---------- */
+(() => {
+  const box = document.createElement('div');
+  box.className = 'lightbox';
+  box.innerHTML = '<img alt=""><button type="button" aria-label="Cerrar">×</button>';
+  document.body.appendChild(box);
+  const big = box.querySelector('img');
+  const open = src => { big.src = src; box.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const close = () => { box.classList.remove('open'); document.body.style.overflow = ''; };
+  document.addEventListener('click', e => {
+    const img = e.target.closest('.ph img');
+    if (img) open(img.dataset.full || img.src);
+  });
+  // clic fuera de la foto (o en la X) cierra
+  box.addEventListener('click', e => { if (e.target !== big) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
