@@ -3,16 +3,7 @@
    sessions: [['HH:MM', minutos], ...]  → cada una con su cuenta atrás
    when:     texto que se muestra en la tarjeta
    ============================================================ */
-const CATS = {
-  patinaje:    { name: 'Patinaje',    color: '#3653BA' },
-  running:     { name: 'Running',     color: '#e4572e' },
-  taller:      { name: 'Taller',      color: '#7b4bd6' },
-  raqueta:     { name: 'Raqueta',     color: '#2e9e5b' },
-  celebracion: { name: 'Celebración', color: '#d6336c' },
-  juegos:      { name: 'Juegos',      color: '#f2a900' },
-  servicios:   { name: 'Servicios',   color: '#0e8fa8' },
-  animacion:   { name: 'Animación',   color: '#ff7a2f' }
-};
+
 
 const PEAKS = [['12:30', 120], ['17:30', 180]];
 const PEAKS_TXT = '12:30 – 14:30 h y 17:30 – 20:30 h';
