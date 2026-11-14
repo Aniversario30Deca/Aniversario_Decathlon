@@ -126,20 +126,20 @@ function render() {
     </div>`;
   }).join('');
 
-  // const used = [...new Set(ACTIVITIES.map(a => a.cat))];
-  // filtersEl.innerHTML =
-  //   `<button class="chip on" data-f="all">Todas</button>` +
-  //   used.map(k => `<button class="chip" data-f="${k}">${CATS[k].name}</button>`).join('');
+  const used = [...new Set(ACTIVITIES.map(a => a.cat))];
+  filtersEl.innerHTML =
+    `<button class="chip on" data-f="all">Todas</button>` +
+    used.map(k => `<button class="chip" data-f="${k}">${CATS[k].name}</button>`).join('');
 }
 
-// filtersEl.addEventListener('click', e => {
-//   const btn = e.target.closest('.chip'); if (!btn) return;
-//   filtersEl.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === btn));
-//   const f = btn.dataset.f;
-//   daysEl.classList.toggle('filtered', f !== 'all');
-//   document.querySelectorAll('.card').forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
-//   document.querySelectorAll('.day').forEach(d => d.classList.toggle('hide', !d.querySelector('.card:not(.hide)')));
-// });
+filtersEl.addEventListener('click', e => {
+  const btn = e.target.closest('.chip'); if (!btn) return;
+  filtersEl.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === btn));
+  const f = btn.dataset.f;
+  daysEl.classList.toggle('filtered', f !== 'all');
+  document.querySelectorAll('.card').forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+  document.querySelectorAll('.day').forEach(d => d.classList.toggle('hide', !d.querySelector('.card:not(.hide)')));
+});
 
 /* ---------- COUNTDOWN ---------- */
 function setCd(root, ms) {
